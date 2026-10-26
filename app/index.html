@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script type="module" src="./main.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Alexis' Movie Watchlist</title>
+    <style>
+        /* Custom scrollbar for Apple Watch Digital Crown feel */
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #78716c;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen w-full bg-stone-950 sm:py-6">
+    <!-- Apple Watch SE Bezel Frame on larger screens, full screen on Watch viewport -->
+    <div class="w-full max-w-[224px] sm:h-[272px] sm:rounded-[44px] sm:border-[6px] sm:border-stone-800 sm:shadow-2xl bg-stone-200 overflow-y-auto overflow-x-hidden flex flex-col">
+        <main class="flex flex-col gap-2.5 self-center w-full px-2.5 py-3 text-stone-900">
+            <section class="flex flex-col gap-2">
+                <h1 class="font-light text-xs tracking-wide px-2 py-1 bg-stone-400 rounded-[.2rem] text-stone-900 flex gap-1.5 w-full justify-center items-center select-none shadow-sm">
+                    <span id="total-movies" class="text-xs font-medium">0</span> Movies Watched.
+                </h1>
+                <input type="text" id="search-input" placeholder="Search for a movie" class="focus:outline outline-orange-500 w-full px-2 py-1 text-xs bg-stone-300 text-stone-900 border-[2px] border-stone-500 rounded-[2px] shadow-sm">    
+                <ul id="search-results" class="flex flex-col hidden bg-stone-200 rounded-[.2rem] overflow-hidden">
+                </ul>
+                <div class="flex flex-col gap-1">
+                    <button type="button" id="toggle-add-movie" class="text-xs bg-stone-500 text-white font-light tracking-wider px-2.5 py-1.5 flex justify-between items-center cursor-pointer select-none rounded-[.2rem] transition duration-300 hover:bg-stone-600 active:scale-[0.98] w-full">
+                        Add a Movie <span id="toggle-add-movie-icon" class="text-sm font-medium leading-none">+</span>
+                    </button>
+                    <form id="add-movie-form" class="flex flex-col gap-1.5 p-2 bg-stone-300 border border-stone-400 rounded-[.2rem] hidden">
+                        <input type="text" id="new-movie-title" placeholder="Movie title" required class="focus:outline outline-orange-500 w-full px-2 py-1 text-xs bg-stone-200 text-stone-900 border border-stone-500 rounded-[2px]">
+                        <select id="new-movie-section" class="focus:outline outline-orange-500 w-full px-2 py-1 text-xs bg-stone-200 text-stone-900 border border-stone-500 rounded-[2px]">
+                            <option value="watchlist">Watchlist</option>
+                            <option value="watched">Watched</option>
+                        </select>
+                        <input type="number" id="new-movie-year" placeholder="Year (e.g. 2026)" min="1900" max="2100" class="focus:outline outline-orange-500 w-full px-2 py-1 text-xs bg-stone-200 text-stone-900 border border-stone-500 rounded-[2px] hidden">
+                        <button type="submit" class="text-[10px] text-white font-medium bg-stone-600 hover:bg-stone-700 px-2 py-1.5 rounded-[2px] shadow-sm uppercase tracking-wide cursor-pointer">
+                            Add Movie
+                        </button>
+                    </form>
+                </div>
+            </section>
+            <div class="flex flex-col shadow-sm gap-1">
+                <section id="watchlist" class="flex flex-col gap-1 border-b border-dotted border-stone-100">
+                    <h2 class="text-sm bg-stone-600 text-white font-light capitalize tracking-wider px-2.5 py-2 btn-toggle flex justify-between items-center cursor-pointer select-none rounded-[.2rem] transition duration-300 hover:bg-stone-700 active:scale-[0.98]">
+                        Watchlist <span class="text-base font-medium leading-none">+</span>
+                    </h2>
+                    <ul id="watchlist-list" class="flex flex-col hidden">
+                    </ul>
+                </section>
+                <section id="watched" class="flex flex-col gap-1">
+                    <h2 class="text-sm bg-stone-600 text-white font-light capitalize tracking-wider px-2.5 py-2 btn-toggle flex justify-between items-center cursor-pointer select-none rounded-[.2rem] transition duration-300 hover:bg-stone-700 active:scale-[0.98]">
+                        Watched <span class="text-base font-medium leading-none">+</span>
+                    </h2>
+                    <ul id="watched-list" class="flex flex-col-reverse hidden gap-1">
+                    </ul>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
